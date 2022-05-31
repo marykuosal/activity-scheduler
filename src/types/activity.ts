@@ -3,7 +3,7 @@ import { IPerformer } from "./activityPerformer"
 import { IType } from "./activityType"
 
 export interface IActivity extends Document {
-  type: IType
+  activityType: IType
   performer: IPerformer
   description: string
   deadlineDate: Date
