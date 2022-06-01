@@ -8,7 +8,7 @@ class activitySchema {
     public activityType!: IType;
 
     @prop()
-    public performer?: IPerformer;
+    public performer!: IPerformer;
 
     @prop({ required: true })
     public description!: string;
