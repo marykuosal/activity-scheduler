@@ -1,22 +1,28 @@
-import { getModelForClass, prop } from "@typegoose/typegoose";
-import { Schema as _Schema, model } from "mongoose";
-import { IPerformer } from "../types/activityPerformer";
-import { IType } from "../types/activityType";
+import { IActivity } from "./../types/activity"
+import { model, Schema } from "mongoose"
 
-class activitySchema {
-    @prop({ required: true })
-    public activityType!: IType;
+const activitySchema: Schema = new Schema(
+  {
+    activityType: {
+      type: String,
+      required: true,
+    },
 
-    @prop()
-    public performer!: IPerformer;
+    performer: {
+      type: String,
+      required: true,
+    },
 
-    @prop({ required: true })
-    public description!: string;
+    description: {
+      type: String,
+      required: true,
+    },
+    deadlineDate: {
+        type: String,
+        required: true,
+      },
+  },
+  { timestamps: true }
+)
 
-    @prop({ required: true })
-    public deadlineDate!: Date; 
-}
-
-const ActivityModel = getModelForClass(activitySchema);
-
-export default ActivityModel;
+export default model<IActivity>("ActivityModel", activitySchema)

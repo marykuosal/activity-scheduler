@@ -1,14 +1,14 @@
 import { Router } from "express"
-import { getTodos, addTodo, updateTodo, deleteTodo } from "../controllers/todos"
+import { getActivities, addActivity, updateActivity, deleteActivity } from "../controllers/activities"
 
 const router: Router = Router()
 
-router.get("/todos", getTodos)
+router.get("/activities", getActivities)
 
-router.post("/add-todo", addTodo)
+router.post("/add-activity", addActivity)
 
-router.put("/edit-todo/:id", updateTodo)
+router.put("/edit-activity/:id", updateActivity)
 
-router.delete("/delete-todo/:id", deleteTodo)
+router.delete("/delete-activity/:id", deleteActivity)
 
 export default router

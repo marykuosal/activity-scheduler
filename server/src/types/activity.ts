@@ -3,10 +3,10 @@ import { IPerformer } from "./activityPerformer"
 import { IType } from "./activityType"
 
 export interface IActivity extends Document {
-  activityType: IType
-  performer: IPerformer
+  activityType: "Mowing" | "Fertilisation" | "Irrigation" | "Aeration" | undefined
+  performer: "John" | "Tony" | "Tom" | undefined
   description: string
-  deadlineDate: Date
+  deadlineDate: string
 }
 
 const SavedActivitySchema = new Schema({});

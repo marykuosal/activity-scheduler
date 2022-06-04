@@ -13,21 +13,21 @@ const getActivities = async (req: Request, res: Response): Promise<void> => {
 
 const addActivity = async (req: Request, res: Response): Promise<void> => {
     try {
-      const body = req.body as Pick<IActivity, "activityType" | "description" | "performer" | "deadlineDate">
-  
-      const activity = new ActivityModel({
+      const body = req.body as Pick<IActivity, "activityType" | "performer" | "description" | "deadlineDate">
+      console.log(JSON.parse(res)+ " body");
+      const activity: IActivity = new ActivityModel({
         activityType: body.activityType,
-        description: body.description,
         performer: body.performer,
+        description: body.description,
         deadlineDate: body.deadlineDate
       })
   
-      const {activityType, description, performer, deadlineDate}: IActivity= await activity.save()
+      const newActivity: IActivity= await activity.save()
       const allActivities: IActivity[] = await ActivityModel.find();
   
       res
         .status(201)
-        .json({ message: "Activity added", activity: {activityType, description, performer, deadlineDate}, activities: allActivities })
+        .json({ message: "Activity added", activity: newActivity, activities: allActivities })
     } catch (error) {
       throw error
     }
@@ -40,7 +40,7 @@ const addActivity = async (req: Request, res: Response): Promise<void> => {
         body,
       } = req
       const updateActivity: IActivity | null = await ActivityModel.findByIdAndUpdate(
-        { _id: id },
+        { _id: id},
         body
       )
       const allActivities: IActivity[] = await ActivityModel.find()
